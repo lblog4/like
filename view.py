@@ -55,53 +55,6 @@ def nhapkeyfree():
     day=time.strftime("%d-%m-%Y")
     today=time.strftime("%d-%m-%Y")
     d=time.strftime("%d-%m")
-    # JSON KEY TOOL
-    json_key = requests.get('https://ndptoolvip-api.tk/api/taokey.php').json()
-    # TÁCH DỮ LIỆU TRẢ VỀ CỦA JSON KEY
-    key = json_key['key']
-    link = json_key['link']
-    loichuc = json_key['loichuc']
-    # FILE KEY MỚI + CŨ
-    file_key = f'ndpkey_ngay_{a}.txt'
-    file_key_cu = f'ndpkey_ngay_{ngày_trc}.txt'
-    check_file_key=os.path.exists(file_key)
-    if check_file_key == False:
-        print(ndp_tool+luc+'Đường Dẫn Lấy Key'+trang+': '+link+'')
-        while True:
-            print(ndp_tool+do+'['+vang+'NOTE'+do+']'+trang+': Lưu Ý Mỗi Thiết Bị 1 API Key Khác Nhau!!')
-            print('\033[1;37m- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
-            key9 = input(ndp_tool+luc+'Nhập API Key Bạn Đã Vượt'+trang+': '+vang)
-            if key9 == key:
-                print(f''+luc+'API Bạn Nhập Chính Xác, '+xnhac+loichuc+'')
-                luu = open(file_key, 'a+')
-                luu.write(key9)
-                luu.close()
-                break
-            elif key9 != key:
-                print(ndp_tool+do+'Key Sai, Vui Lòng Kiểm Tra Lại!!!')
-    elif check_file_key == True:
-        print(ndp_tool+xnhac+'Đang Kiểm Tra Key Bạn Đã Nhập Trước Đó...','     ',end='\r')
-        sleep(2)
-        k = open(file_key, 'r')
-        key9 = k.read()
-        k.close()
-        if key9 == key:
-            print(f'Key Đúng, {loichuc}','     ',end='\r')
-        elif key9 != key:
-            if os.path.exists(file_key_cu) == True:
-                os.system(f'rm {file_key_cu}')
-            os.system(f'rm {file_key}')
-            print(ndp_tool+do+'Key Sai, Vui Lòng Kiểm Tra Lại')
-            while(True):
-                    key9 = input(ndp_tool+luc+'Nhập API Key Bạn Đã Vượt: ')
-                    if key9 == key:
-                        print(f''+luc+'API Bạn Nhập Chính Xác, '+xnhac+loichuc+'','     ',end='\r')
-                        luu = open(file_key, 'a+')
-                        luu.write(key9)
-                        luu.close()
-                        break
-                    elif key9 != key:
-                        print('Key Sai, Vui Lòng Kiểm Tra Lại') 
 def echo(a):
    for i in range(len(a)):
      sys.stdout.write(a[i])
